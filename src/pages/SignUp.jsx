@@ -8,6 +8,7 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { db } from '../firebase.config';
+import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -42,6 +43,11 @@ function SignUp() {
 
       updateProfile(auth.currentUser, { displayName: name });
 
+      const formDataCopy = { ...formData };
+      delete formDataCopy.password; //we don't want to the password to get saved to the database
+      formDataCopy.timestamp = serverTimestamp(); //set the timestamp to the server timestamp
+
+      await setDoc(doc(db, 'users', user.uid), formDataCopy); //setDoc is actually updating the database and adding our user to the 'users' collection
       navigate('/');
     } catch (error) {
       console.log(error);
