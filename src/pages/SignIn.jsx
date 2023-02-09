@@ -1,12 +1,9 @@
 import { React, useState } from 'react';
+import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  signInWithEmailANdPassword,
-} from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
@@ -39,7 +36,7 @@ function SignIn() {
         navigate('/');
       }
     } catch (error) {
-      console.log(error);
+      toast.error('Bad User Credetials');
     }
   };
   return (
