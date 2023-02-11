@@ -105,6 +105,7 @@ function CreateListing() {
         data.status === 'ZERO_RESULTS'
           ? undefined
           : data.results[0]?.formatted_address;
+      console.log(location);
 
       if (location === undefined || location.includes('undefined')) {
         setLoading(false);
@@ -114,7 +115,6 @@ function CreateListing() {
     } else {
       geolocation.lat = latitude;
       geolocation.lng = longitude;
-      location = address;
     }
 
     // Store image in firebase

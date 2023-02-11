@@ -5,6 +5,7 @@ import bedIcon from '../assets/svg/bedIcon.svg';
 import bathtubIcon from '../assets/svg/bathtubIcon.svg';
 
 function ListingItem({ listing, id, onDelete }) {
+  console.log(listing, id);
   return (
     <li className="categoryListing">
       {' '}
