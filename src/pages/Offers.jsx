@@ -66,7 +66,7 @@ function Offers() {
               {listings.map((listing) => (
                 <ListingItem
                   listing={listing.data}
-                  if={listing.id}
+                  id={listing.id}
                   key={listing.id}
                 />
               ))}

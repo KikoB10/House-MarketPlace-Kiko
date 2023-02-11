@@ -16,7 +16,6 @@ function Listing() {
   const params = useParams();
   const auth = getAuth();
 
-  console.log(params.listingId);
   useEffect(() => {
     const fetchListing = async () => {
       const docRef = doc(db, 'listings', params.listingId);
