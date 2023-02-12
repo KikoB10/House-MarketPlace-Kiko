@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import { getDoc, doc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { db } from '../firebase.config';
@@ -54,7 +55,7 @@ function Listing() {
 
       {shareLinkCopied && <p className="linkCopied">Link Copied!</p>}
 
-      <div className="listingDdetails">
+      <di className="listingDdetails">
         <p className="listingName">
           {listing.name} - $
           {listing.offer
@@ -94,7 +95,17 @@ function Listing() {
         </ul>
         <p className="listingLocationTitle">Location</p>
 
-        {/* MAP */}
+        
+        <div className="leafletContainer">
+            <MapContainer 
+            style={{height:'100%', width:'100%'}} 
+            center={{listing.geolocation.lat, listing.geolocation.lng}} 
+            zoom={13} 
+            scrollWheelZoom={false}>
+              <TileLayer />
+            </MapContainer>
+        </div>
+
         {auth.currentUser?.uid !== listing.userRef && (
           <Link
             to={`/contact/${listing.userRef}?listingName=${listing.name}`}
@@ -109,3 +120,5 @@ function Listing() {
 }
 
 export default Listing;
+
+//https://stackoverflow.com/questions/67552020/how-to-fix-error-failed-to-compile-node-modules-react-leaflet-core-esm-pat
