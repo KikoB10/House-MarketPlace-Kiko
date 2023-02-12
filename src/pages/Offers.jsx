@@ -1,6 +1,5 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import {
   collection,
   getDocs,
@@ -20,7 +19,6 @@ function Offers() {
   const [loading, setLoading] = useState(true);
   const [lastFetchedListing, setLastFetechedListing] = useState(null);
 
-  const params = useParams();
   useEffect(() => {
     const fetchListings = async () => {
       // console.log('this works');
