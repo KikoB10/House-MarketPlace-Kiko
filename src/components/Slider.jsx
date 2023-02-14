@@ -27,10 +27,11 @@ function Slider() {
 
       let listings = [];
 
+      //slider issue was that i did not call doc.data() and had doc.data instead ***
       querySnap.forEach((doc) => {
         return listings.push({
           id: doc.id,
-          data: doc.data,
+          data: doc.data(),
         });
       });
       // console.log(listings);
